@@ -66,39 +66,6 @@ export default function App() {
         {/* Sleek corporate header */}
         <Header />
 
-        {/* Info Highlights / Quick KPI Bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-white border border-gray-150 p-4 rounded-xl shadow-xs flex items-center gap-3">
-            <div className="p-2 bg-[#00aaff]/10 text-[#00aaff] rounded-lg shrink-0">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-[10px] uppercase font-bold tracking-wider text-gray-400">Total de Opções</p>
-              <h4 className="text-sm font-extrabold text-gray-900">{PRICING_PLANS.length * 4} Modalidades</h4>
-            </div>
-          </div>
-
-          <div className="bg-white border border-gray-150 p-4 rounded-xl shadow-xs flex items-center gap-3">
-            <div className="p-2 bg-amber-50 text-amber-700 rounded-lg shrink-0">
-              <TrendingUp className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-[10px] uppercase font-bold tracking-wider text-gray-400 font-sans">Facilidade de Crédito</p>
-              <h4 className="text-sm font-extrabold text-gray-900 font-mono">Boleto / Recorrente 30x</h4>
-            </div>
-          </div>
-
-          <div className="bg-white border border-gray-150 p-4 rounded-xl shadow-xs flex items-center gap-3">
-            <div className="p-2 bg-pink-50 text-pink-600 rounded-lg shrink-0">
-              <Smartphone className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-[10px] uppercase font-bold tracking-wider text-gray-400">Suporte Corretores</p>
-              <h4 className="text-sm font-extrabold text-gray-900">WhatsApp & PDFs</h4>
-            </div>
-          </div>
-        </div>
-
         {/* Dynamic Model Switch tabs */}
         <div className="flex bg-gray-100 p-1.5 rounded-2xl border border-gray-200">
           <button
@@ -170,6 +137,8 @@ export default function App() {
         <div id="section-comparison-matrix">
           <FullComparisonTable 
             activePlanId={selectedPlan.id}
+            onSelectPlan={handleSelectPlan}
+            onSelectPaymentType={handleSelectPaymentType}
           />
         </div>
 

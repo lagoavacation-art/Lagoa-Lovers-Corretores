@@ -412,9 +412,32 @@ export default function WhatsappProposal({
       paymentDetail = `*R$ ${bol.total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} BOLETO*\n➡️ *Entrada de ${fmt(bol.entrance)}*\n➡️ *Saldo de 30x de ${fmt(bol.installmentValue)}* no Boleto Bancário`;
     }
 
-    const lodgingDesc = pCount >= 5 
-      ? `✅ 6 diárias de hospedagem de domingo a quinta-feira (boas-vindas para utilização única, exceto em férias e feriados).`
-      : `✅ 4 diárias de hospedagem de domingo a quinta-feira (boas-vindas para utilização única, exceto em férias e feriados).`;
+    let targetDesc = '';
+    let benefitsList = '';
+
+    if (selectedPlan.id === 7) {
+      targetDesc = `Para Titular, Cônjuge, Pai, Mãe, Sogro, Sogra e filhos de até 24 anos usufruírem de forma vitalícia e definitiva.`;
+      benefitsList = `✅ Título Familiar vitalício completo (Titular + cônjuge + agregado).
+✅ 1ª anuidade de carteirinhas grátis para titular e agregados!
+✅ 02 convites mensais após quitação do título (não cumulativos).
+✅ 50% de desconto definitivo no estacionamento do clube.
+✅ 10% de desconto definitivo no Réveillon do clube.
+✅ 8 diárias de hospedagem inclusas para utilizar com sua família ou convidados.`;
+    } else if (selectedPlan.id === 8) {
+      targetDesc = `Isento de taxa de manutenção mensal permanente para Titular, Cônjuge, Pai, Mãe, Sogro, Sogra e filhos.`;
+      benefitsList = `✅ ISENTO permanentemente de taxa de manutenção mensal para sempre!
+✅ 12 diárias de hospedagem completas fracionadas em até 3x (domingo a quinta).
+✅ 02 convites mensais após quitação do título (não cumulativos).
+✅ 50% de desconto definitivo no estacionamento do clube.
+✅ 10% de desconto definitivo no Réveillon do clube.`;
+    } else {
+      targetDesc = `Para até *${pCount} ${pCount === 1 ? 'pessoa' : 'pessoas'}* usufruírem de forma vitalícia e definitiva.`;
+      const lodgingNights = selectedPlan.lodgingNights;
+      benefitsList = `✅ 1° Ano de taxa de carteirinha totalmente grátis!
+✅ 02 convites mensais após quitação (não cumulativos) para trazer convidados.
+✅ 50% de desconto definitivo no estacionamento do clube.
+✅ ${lodgingNights} diárias de hospedagem de domingo a quinta-feira (boas-vindas para utilização única, exceto em férias e feriados).`;
+    }
 
     const brokerSignature = brokerName 
       ? `\nQualquer dúvida estou à disposição para ajudar no seu processo de associação!\nAtenciosamente,\n*${brokerName}*${brokerPhone ? `\n📞 Contato: ${brokerPhone}` : ''}`
@@ -429,16 +452,13 @@ export default function WhatsappProposal({
 Preparei aqui os detalhes do seu orçamento exclusivo para as condições do *TITULO VITALÍCIO SOCIAL* do clube. Veja como ficou fácil se associar:
 
 🏆 *${pTitle.toUpperCase()}*
-Para até *${pCount} ${pCount === 1 ? 'pessoa' : 'pessoas'}* usufruírem de forma vitalícia e definitiva.
+${targetDesc}
 
 💵 *CONDIÇÃO COMPILADA QUE SELECIONAMOS:*
 ${paymentDetail}${savingsSection}
 
 🌟 *BENEFÍCIOS EXCLUSIVOS INCLUSOS:*
-✅ 1° Ano de taxa de carteirinha totalmente grátis!
-✅ 02 convites mensais após quitação (não cumulativos) para trazer convidados.
-✅ 50% de desconto definitivo no estacionamento do clube.
-${lodgingDesc}
+${benefitsList}
 
 ⚠️ *Proposta válida por 24 horas (Sujeito a alterações sem aviso prévio)*
 
