@@ -1276,18 +1276,55 @@ export default function ContractSheet({
               </div>
             </div>
           )}
+
+          {/* PERSISTENT FLOATING ACTIONS IN PREVIEW MODE */}
+          {isManualPreviewActive && (
+            <div className="print:hidden fixed bottom-6 right-6 z-55 flex items-center gap-3 bg-gray-900/95 backdrop-blur-md border border-gray-800 p-3.5 rounded-2xl shadow-2xl font-sans max-w-[90vw] animate-bounce-short">
+              <div className="hidden sm:block text-left pr-3 border-r border-gray-800 mr-1">
+                <h5 className="font-extrabold text-[11px] uppercase text-[#00aaff] flex items-center gap-1.5">
+                  <Download className="w-3.5 h-3.5 text-[#00aaff]" />
+                  <span>Ficha de Venda</span>
+                </h5>
+                <p className="text-gray-400 text-[10px] leading-tight mt-0.5">Pronta para PDF ou impressão</p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    try {
+                      window.print();
+                    } catch (e) {
+                      console.error(e);
+                    }
+                  }}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider px-4 py-2.5 rounded-xl cursor-pointer flex items-center justify-center gap-1.5 transition-all shadow-md active:scale-95"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Baixar PDF</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsManualPreviewActive(false)}
+                  className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-xl cursor-pointer flex items-center justify-center gap-1.5 transition-all border border-rose-700/50 shadow-md active:scale-95"
+                >
+                  <X className="w-3.5 h-3.5 text-rose-200" />
+                  <span>Ir para Sistema</span>
+                </button>
+              </div>
+            </div>
+          )}
           
           {/* PAGE 1: CONTRATO AUTORIZAÇÃO */}
           <div className="print-page w-[210mm] min-h-[297mm] pl-[16mm] pr-[16mm] pt-[10mm] pb-[10mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
             {/* Decorative Side Borders from Uploaded Attachments */}
             <img 
-              src="input_file_0.png" 
+              src="https://i.postimg.cc/sxBbXFXr/Whats-App-Image-2026-05-28-at-12-47-23.jpg" 
               alt="Borda Esquerda" 
               className="absolute left-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
               referrerPolicy="no-referrer"
             />
             <img 
-              src="input_file_1.png" 
+              src="https://i.postimg.cc/g2vF8PKd/Whats-App-Image-2026-05-28-at-12-47-18.jpg" 
               alt="Borda Direita" 
               className="absolute right-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
               referrerPolicy="no-referrer"
@@ -1297,7 +1334,7 @@ export default function ContractSheet({
               {/* Logo and Class Header */}
               <div className="flex justify-between items-center border-b pb-4 mb-5 border-gray-300">
                 <img 
-                  src="input_file_2.png" 
+                  src="https://i.postimg.cc/2SvmGWr9/Whats-App-Image-2026-05-28-at-12-57-51.png" 
                   alt="Lagoa Lovers" 
                   className="h-16 object-contain"
                   referrerPolicy="no-referrer"
@@ -1538,13 +1575,13 @@ export default function ContractSheet({
           <div className="print-page w-[210mm] min-h-[297mm] pl-[16mm] pr-[16mm] pt-[10mm] pb-[10mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
             {/* Decorative Side Borders from Uploaded Attachments */}
             <img 
-              src="input_file_0.png" 
+              src="https://i.postimg.cc/sxBbXFXr/Whats-App-Image-2026-05-28-at-12-47-23.jpg" 
               alt="Borda Esquerda" 
               className="absolute left-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
               referrerPolicy="no-referrer"
             />
             <img 
-              src="input_file_1.png" 
+              src="https://i.postimg.cc/g2vF8PKd/Whats-App-Image-2026-05-28-at-12-47-18.jpg" 
               alt="Borda Direita" 
               className="absolute right-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
               referrerPolicy="no-referrer"
@@ -1554,7 +1591,7 @@ export default function ContractSheet({
               {/* Logo and Class Header */}
               <div className="flex justify-between items-center border-b pb-4 mb-4 border-gray-300">
                 <img 
-                  src="input_file_2.png" 
+                  src="https://i.postimg.cc/2SvmGWr9/Whats-App-Image-2026-05-28-at-12-57-51.png" 
                   alt="Lagoa Lovers" 
                   className="h-16 object-contain"
                   referrerPolicy="no-referrer"
