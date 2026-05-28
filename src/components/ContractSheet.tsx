@@ -152,6 +152,7 @@ export default function ContractSheet({
   // Supabase Sync States
   const [savingContract, setSavingContract] = useState(false);
   const [contractSaveStatus, setContractSaveStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [contractSaveError, setContractSaveError] = useState<string>('');
   const [contractsHistory, setContractsHistory] = useState<any[]>([]);
 
   // Auto-save tracking states to prevent duplicates
@@ -292,11 +293,13 @@ export default function ContractSheet({
         }
 
         setContractSaveStatus('success');
+        setContractSaveError('');
         loadContractsHistory();
         setLastSavedContractData(currentData);
         setTimeout(() => setContractSaveStatus('idle'), 3000);
       } catch (err: any) {
         console.error('Erro ao auto-salvar contrato no Supabase:', err);
+        setContractSaveError(err.message || err.details || String(err));
         setContractSaveStatus('error');
       } finally {
         setSavingContract(false);
@@ -386,19 +389,23 @@ export default function ContractSheet({
       };
 
       if (currentContractId) {
-        await supabase.from('contracts').update(payload).eq('id', currentContractId);
+        const { error } = await supabase.from('contracts').update(payload).eq('id', currentContractId);
+        if (error) throw error;
       } else {
-        const { data } = await supabase.from('contracts').insert([payload]).select();
+        const { data, error } = await supabase.from('contracts').insert([payload]).select();
+        if (error) throw error;
         if (data && data[0]) {
           setCurrentContractId(data[0].id);
         }
       }
 
       setContractSaveStatus('success');
+      setContractSaveError('');
       loadContractsHistory();
       setTimeout(() => setContractSaveStatus('idle'), 4000);
     } catch (err: any) {
       console.error('Erro ao salvar contrato no Supabase:', err);
+      setContractSaveError(err.message || err.details || String(err));
       setContractSaveStatus('error');
     } finally {
       setSavingContract(false);
@@ -526,9 +533,34 @@ export default function ContractSheet({
           <div className="flex gap-3">
             <AlertCircle className="w-5 h-5 shrink-0 text-amber-600" />
             <div className="leading-relaxed">
-              <span className="font-bold">Esquema da Tabela `contracts` necessário:</span> Para que possamos sincronizar essa ficha com sua conta, acesse o <strong>SQL Editor</strong> do seu Supabase, cole e execute a instrução abaixo para criar a tabela correta:
+              <span className="font-bold">Esquema da Tabela `contracts` inválido ou desatualizado:</span> Para sincronizar as fichas corretamente, verifique o erro abaixo e crie/restaure a tabela com a estrutura correta.
             </div>
           </div>
+
+          {contractSaveError && (
+            <div className="bg-red-50 border border-red-200 text-red-800 p-3.5 rounded-lg font-mono text-[11px] leading-relaxed">
+              <span className="font-bold text-red-950 block mb-1">❌ Informação Técnica do Erro (Supabase):</span>
+              <div className="break-all whitespace-pre-wrap">{contractSaveError}</div>
+              <div className="mt-3 text-red-900 font-sans text-xs border-t border-red-200/60 pt-2 space-y-1.5 font-medium">
+                {contractSaveError.includes('column') ? (
+                  <p>
+                    💡 <strong>Como corrigir (Múltiplas colunas em falta):</strong> Sua tabela atual no Supabase tem colunas antigas ou incompletas. Para resolver esse problema, execute o SQL do bloco cinza abaixo para <strong>remover e criar a tabela limpa</strong> com todas as colunas necessárias.
+                  </p>
+                ) : null}
+                {contractSaveError.includes('row-level security') || contractSaveError.includes('violates row-level security policy') || contractSaveError.includes('policy') ? (
+                  <p>
+                    💡 <strong>Como corrigir (Política de Segurança):</strong> Desative a proteção de RLS na tabela do seu Supabase rodando o comando: <br />
+                    <code className="bg-red-100 font-mono font-bold px-1 py-0.5 rounded text-red-950 select-all shrink-0">ALTER TABLE contracts DISABLE ROW LEVEL SECURITY;</code>
+                  </p>
+                ) : null}
+              </div>
+            </div>
+          )}
+
+          <div className="text-[11px] font-bold text-gray-700 mt-1">
+            Instrução de Correção Rápida no seu Supabase (SQL Editor):
+          </div>
+
           <pre className="p-3 bg-gray-900 text-gray-300 rounded-lg font-mono text-[9px] overflow-x-auto select-all leading-normal whitespace-pre">
 {`-- 1. Se a tabela já existia de testes anteriores, remova-a para recriar com a estrutura correta:
 DROP TABLE IF EXISTS contracts;
