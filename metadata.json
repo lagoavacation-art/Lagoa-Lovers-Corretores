@@ -1,0 +1,6 @@
+{
+  "name": "Tabela de Vendas - Título Vitalício",
+  "description": "Ferramenta de vendas interativa para corretores com simulador de parcelas, comparativo de planos, vantagens integradas e gerador de propostas para WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* Hide print layout inside the web browser views */
+.hidden-in-browser {
+  display: none;
+}
+
+@media print {
+  /* Hide standard UI elements when sending to standard print layouts */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Only display the printable blueprint container */
+  #printable-contract-blueprint, 
+  #printable-contract-blueprint * {
+    visibility: visible;
+  }
+
+  #printable-contract-blueprint {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: black;
+  }
+
+  /* Set page break parameters for a clean twin a4 layout */
+  .print-page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 10mm;
+    margin: 0 auto;
+    page-break-after: always;
+    page-break-inside: avoid;
+    box-sizing: border-box;
+    background: white !important;
+    color: black !important;
+  }
+
+  .print-page:last-child {
+    page-break-after: avoid;
+  }
+
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+
+  /* Reset normal page padding margins in Chrome/Safari to suppress browser text headers and footers */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
