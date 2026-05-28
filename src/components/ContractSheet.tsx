@@ -1315,42 +1315,42 @@ export default function ContractSheet({
           )}
           
           {/* PAGE 1: CONTRATO AUTORIZAÇÃO */}
-          <div className="print-page w-[210mm] min-h-[297mm] pl-[16mm] pr-[16mm] pt-[10mm] pb-[10mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
+          <div className="print-page w-[210mm] min-h-[297mm] pl-[16mm] pr-[16mm] pt-[6mm] pb-[6mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
             {/* Decorative Side Borders from Uploaded Attachments */}
             <img 
-              src="https://i.postimg.cc/sxBbXFXr/Whats-App-Image-2026-05-28-at-12-47-23.jpg" 
+              src="https://i.postimg.cc/g2vF8PKd/Whats-App-Image-2026-05-28-at-12-47-18.jpg" 
               alt="Borda Esquerda" 
-              className="absolute left-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-[8mm] h-[120mm] object-contain pointer-events-none" 
               referrerPolicy="no-referrer"
             />
             <img 
-              src="https://i.postimg.cc/g2vF8PKd/Whats-App-Image-2026-05-28-at-12-47-18.jpg" 
+              src="https://i.postimg.cc/sxBbXFXr/Whats-App-Image-2026-05-28-at-12-47-23.jpg" 
               alt="Borda Direita" 
-              className="absolute right-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-[8mm] h-[120mm] object-contain pointer-events-none" 
               referrerPolicy="no-referrer"
             />
 
             <div className="relative z-10 w-full">
               {/* Logo and Class Header */}
-              <div className="flex justify-between items-center border-b pb-4 mb-5 border-gray-300">
+              <div className="flex justify-between items-center border-b pb-3 mb-4 border-gray-300">
                 <img 
                   src="https://i.postimg.cc/2SvmGWr9/Whats-App-Image-2026-05-28-at-12-57-51.png" 
                   alt="Lagoa Lovers" 
-                  className="h-16 object-contain"
+                  className="h-12 object-contain"
                   referrerPolicy="no-referrer"
                 />
                 <div className="text-right">
                   <div className="text-xs font-mono font-bold">Sala: <span className="underline ml-1 font-sans">{sala || '_________________'}</span></div>
-                  <div className="text-[9px] text-gray-400 font-mono mt-1">Ref: {selectedPlan.title.toUpperCase()}</div>
+                  <div className="text-[9px] text-gray-400 font-mono mt-0.5">Ref: {selectedPlan.title.toUpperCase()}</div>
                 </div>
               </div>
 
               {/* Sheet Title */}
-              <div className="text-center mb-6">
-                <h2 className="text-xs font-black tracking-widest text-gray-950 uppercase border-y py-1.5 border-gray-300 bg-gray-50/80">
+              <div className="text-center mb-4.5">
+                <h2 className="text-[11px] font-black tracking-widest text-gray-950 uppercase border-y py-1 border-gray-300 bg-gray-50/80">
                   AUTORIZAÇÃO PARA EMISSÃO DE CONTRATO LAGOA LOVERS
                 </h2>
-                <div className="flex justify-between text-[11px] font-semibold mt-3 text-left">
+                <div className="flex justify-between text-[10px] font-semibold mt-2 text-left">
                   <div className="w-1/3 text-left">
                     <span>Captador: <span className="underline ml-1 font-normal">{captador || '_______________________'}</span></span>
                   </div>
@@ -1367,75 +1367,75 @@ export default function ContractSheet({
               </div>
 
               {/* BLOCK 1: DADOS PESSOAIS */}
-              <div className="mb-5 space-y-3">
-                <h3 className="text-xs font-black text-white bg-gray-800 px-2 py-0.5 uppercase tracking-wider rounded-xs">
+              <div className="mb-3.5 space-y-1.5">
+                <h3 className="text-[10px] font-black text-white bg-gray-800 px-2 py-0.5 uppercase tracking-wider rounded-xs">
                   DADOS PESSOAIS
                 </h3>
                 
-                <div className="grid grid-cols-12 gap-3 text-xs leading-[18px]">
-                  <div className="col-span-8 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Titular:</span>
+                <div className="grid grid-cols-12 gap-x-3 gap-y-1 text-[10.5px] leading-tight">
+                  <div className="col-span-8 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Titular:</span>
                     <span className="font-semibold text-gray-950 uppercase">{titular || '____________________________________________________'}</span>
                   </div>
-                  <div className="col-span-4 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Data de nascimento:</span>
+                  <div className="col-span-4 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Data de nascimento:</span>
                     <span className="font-mono font-semibold text-gray-950">{birthDate || '___ / ___ / ______'}</span>
                   </div>
 
-                  <div className="col-span-3 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">CPF:</span>
+                  <div className="col-span-3 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">CPF:</span>
                     <span className="font-mono font-semibold text-gray-950">{cpf || '___ . ___ . ___ - __'}</span>
                   </div>
-                  <div className="col-span-3 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">RG:</span>
+                  <div className="col-span-3 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">RG:</span>
                     <span className="font-mono font-semibold text-gray-950">{rg || '_____________________'}</span>
                   </div>
-                  <div className="col-span-2 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Org:</span>
+                  <div className="col-span-2 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Org:</span>
                     <span className="font-mono uppercase font-semibold text-gray-950">{org || '______'}</span>
                   </div>
-                  <div className="col-span-4 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Profissão:</span>
+                  <div className="col-span-4 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Profissão:</span>
                     <span className="font-semibold text-gray-950">{profissao || '_____________________'}</span>
                   </div>
 
-                  <div className="col-span-4 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Nacionalidade:</span>
+                  <div className="col-span-4 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Nacionalidade:</span>
                     <span className="font-semibold text-gray-950">{nacionalidade || 'Brasileira'}</span>
                   </div>
-                  <div className="col-span-6 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Cidade:</span>
+                  <div className="col-span-6 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Cidade:</span>
                     <span className="font-semibold text-gray-950">{cidade || '_____________________'}</span>
                   </div>
-                  <div className="col-span-2 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">UF:</span>
+                  <div className="col-span-2 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">UF:</span>
                     <span className="font-mono uppercase font-semibold text-gray-950">{uf || '___'}</span>
                   </div>
 
-                  <div className="col-span-8 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Endereço residencial:</span>
+                  <div className="col-span-8 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Endereço residencial:</span>
                     <span className="font-semibold text-gray-950">{endereco || '____________________________________________________'}</span>
                   </div>
-                  <div className="col-span-4 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Bairro:</span>
+                  <div className="col-span-4 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Bairro:</span>
                     <span className="font-semibold text-gray-950">{bairro || '_____________________'}</span>
                   </div>
 
-                  <div className="col-span-3 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">CEP:</span>
+                  <div className="col-span-3 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">CEP:</span>
                     <span className="font-mono font-semibold text-gray-950">{cep || '_____-___'}</span>
                   </div>
-                  <div className="col-span-4 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Telefone:</span>
+                  <div className="col-span-4 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Telefone:</span>
                     <span className="font-mono font-semibold text-gray-950">{telefone || '(    ) _________________'}</span>
                   </div>
-                  <div className="col-span-5 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Celular:</span>
+                  <div className="col-span-5 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Celular:</span>
                     <span className="font-mono font-semibold text-gray-950">{celular || '(    ) _________________'}</span>
                   </div>
 
-                  <div className="col-span-12 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">E-mail de acesso:</span>
+                  <div className="col-span-12 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">E-mail de acesso:</span>
                     <span className="font-mono font-semibold text-gray-950">{email || '____________________________________________________________________'}</span>
                   </div>
                 </div>
@@ -1443,69 +1443,71 @@ export default function ContractSheet({
               </div>
 
               {/* BLOCK 2: INFORMAÇÕES DO CARTÃO DE CRÉDITO E RECORRENTE */}
-              <div className="mb-5 space-y-3">
-                <h3 className="text-xs font-black text-white bg-gray-800 px-2 py-0.5 uppercase tracking-wider rounded-xs">
+              <div className="mb-3.5 space-y-1.5">
+                <h3 className="text-[10px] font-black text-white bg-gray-800 px-2 py-0.5 uppercase tracking-wider rounded-xs">
                   INFORMAÇÕES DO CARTÃO DE CRÉDITO E RECORRENTE
                 </h3>
                 
-                <div className="grid grid-cols-12 gap-3 text-xs leading-[18px]">
-                  <div className="col-span-12 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Nome Descrito no cartão:</span>
+                <div className="grid grid-cols-12 gap-x-3 gap-y-1 text-[10.5px] leading-tight">
+                  <div className="col-span-12 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Nome Descrito no cartão:</span>
                     <span className="font-semibold text-gray-950 uppercase">{cardNome || '____________________________________________________'}</span>
                   </div>
 
-                  <div className="col-span-6 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Número do cartão:</span>
+                  <div className="col-span-6 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Número do cartão:</span>
                     <span className="font-mono font-semibold text-gray-950">{cardNumero || '____ ____ ____ ____'}</span>
                   </div>
-                  <div className="col-span-3 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Validade:</span>
+                  <div className="col-span-3 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Validade:</span>
                     <span className="font-mono font-semibold text-gray-950">{cardValidade || '___ / ___'}</span>
                   </div>
-                  <div className="col-span-3 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">Código de segurança:</span>
+                  <div className="col-span-3 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">Código de segurança:</span>
                     <span className="font-mono font-semibold text-gray-950">{cardCvv ? '***' : '_____'}</span>
                   </div>
 
-                  <div className="col-span-6 border-b pb-0.5">
-                    <span className="font-bold text-[10px] text-gray-600 block">CPF do titular do cartão:</span>
+                  <div className="col-span-6 border-b">
+                    <span className="font-bold text-[8.5px] text-gray-500 block">CPF do titular do cartão:</span>
                     <span className="font-mono font-semibold text-gray-950">{cardCpf || cpf || '___ . ___ . ___ - __'}</span>
                   </div>
                 </div>
               </div>
 
               {/* BLOCK 3: FORMA DE PAGAMENTO */}
-              <div className="mb-5 space-y-3">
-                <h3 className="text-xs font-black text-white bg-gray-800 px-2 py-0.5 uppercase tracking-wider rounded-xs">
+              <div className="mb-3.5 space-y-1.5">
+                <h3 className="text-[10px] font-black text-white bg-gray-800 px-2 py-0.5 uppercase tracking-wider rounded-xs">
                   FORMA DE PAGAMENTO
                 </h3>
                 
-                <div className="grid grid-cols-12 gap-2 text-xs">
-                  <div className="col-span-12 border p-2 rounded-md bg-gray-55">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">Produto:</span>
-                    <span className="font-extrabold text-[#00aaff] text-xs">LAGOA LOVERS - {selectedPlan.title.toUpperCase()} ({selectedPlan.peopleCount}P)</span>
+                <div className="grid grid-cols-12 gap-1.5 text-[10px]">
+                  <div className="col-span-6 border p-1 px-2 rounded bg-gray-50/40">
+                    <span className="font-bold text-[8.5px] text-gray-500 uppercase block">Produto:</span>
+                    <span className="font-extrabold text-[#00aaff] truncate block">LAGOA LOVERS - {selectedPlan.title.toUpperCase()} ({selectedPlan.peopleCount}P)</span>
                   </div>
 
-                  <div className="col-span-4 border p-2 rounded-md bg-white">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">Preço de Tabela:</span>
-                    <span className="font-extrabold text-gray-950 text-xs font-mono">{formatCurrency(totalValue)}</span>
-                  </div>
-                  <div className="col-span-4 border p-2 rounded-md bg-amber-50">
-                    <span className="font-bold text-[9px] text-amber-700 uppercase block">Desconto:</span>
-                    <span className="font-extrabold text-amber-950 text-xs font-mono">{discountValue > 0 ? formatCurrency(discountValue) : 'R$ 0,00'}</span>
-                  </div>
-                  <div className="col-span-4 border p-2 rounded-md bg-emerald-50 bg-opacity-30">
-                    <span className="font-bold text-[9px] text-emerald-700 uppercase block">Valor Líquido:</span>
-                    <span className="font-extrabold text-emerald-950 text-xs font-mono">{formatCurrency(Math.max(0, totalValue - discountValue))}</span>
+                  <div className="col-span-6 border p-1 px-2 rounded bg-sky-50/20 flex justify-between gap-1 items-center">
+                    <div>
+                      <span className="font-bold text-[8px] text-gray-500 uppercase block">Tabela:</span>
+                      <span className="font-bold text-gray-700 font-mono text-[9.5px] block">{formatCurrency(totalValue)}</span>
+                    </div>
+                    <div>
+                      <span className="font-bold text-[8px] text-amber-700 uppercase block">Desconto:</span>
+                      <span className="font-bold text-amber-800 font-mono text-[9.5px] block">{discountValue > 0 ? formatCurrency(discountValue) : 'R$ 0,00'}</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-bold text-[8.5px] text-emerald-700 uppercase block">Líquido:</span>
+                      <span className="font-black text-emerald-800 font-mono text-[10px] block">{formatCurrency(Math.max(0, totalValue - discountValue))}</span>
+                    </div>
                   </div>
 
-                  <div className="col-span-6 border p-2 rounded-md">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">Valor total da entrada:</span>
-                    <span className="font-extrabold text-[#00c853] text-xs font-mono">{formatCurrency(entranceValue)}</span>
+                  <div className="col-span-6 border p-1 px-2 rounded">
+                    <span className="font-bold text-[8.5px] text-gray-500 uppercase block">Valor total da entrada:</span>
+                    <span className="font-extrabold text-[#00c853] font-mono">{formatCurrency(entranceValue)}</span>
                   </div>
-                  <div className="col-span-6 border p-2 rounded-md">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">Quantidade de parcelas da entrada:</span>
-                    <span className="font-extrabold text-gray-950 text-xs">
+                  <div className="col-span-6 border p-1 px-2 rounded">
+                    <span className="font-bold text-[8.5px] text-gray-500 uppercase block">Quantidade de parcelas da entrada:</span>
+                    <span className="font-extrabold text-gray-950">
                       {entranceValue > 0 
                         ? `${entranceInstallments.toString().padStart(2, '0')}x parcelas${entranceInstallments > 1 ? ` (de ${formatCurrency(entranceValue / entranceInstallments)} cada)` : ''}`
                         : 'Sem entrada'
@@ -1513,51 +1515,51 @@ export default function ContractSheet({
                     </span>
                   </div>
 
-                  <div className="col-span-12 border p-2 rounded-md">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">Forma de pagamento da entrada:</span>
-                    <span className="font-extrabold text-gray-950 text-xs">{entranceValue > 0 ? getPaymentName() : 'Sem entrada'}</span>
+                  <div className="col-span-12 border p-1 px-2 rounded">
+                    <span className="font-bold text-[8.5px] text-gray-500 uppercase block">Forma de pagamento da entrada:</span>
+                    <span className="font-extrabold text-gray-950">{entranceValue > 0 ? getPaymentName() : 'Sem entrada'}</span>
                   </div>
 
-                  <div className="col-span-12 border p-2 rounded-md">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">2ª Parcela da entrada (data para passar o cartão):</span>
-                    <span className="font-extrabold text-gray-900 text-xs">{segundaEntradaData ? new Date(segundaEntradaData).toLocaleDateString('pt-BR') : '_______________________________'}</span>
+                  <div className="col-span-12 border p-1 px-2 rounded">
+                    <span className="font-bold text-[8.5px] text-gray-500 uppercase block">2ª Parcela da entrada (data para passar o cartão):</span>
+                    <span className="font-extrabold text-gray-900">{segundaEntradaData ? new Date(segundaEntradaData + 'T12:00:00').toLocaleDateString('pt-BR') : '_______________________________'}</span>
                   </div>
 
-                  <div className="col-span-4 border p-2 rounded-md bg-gray-50/50">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">Valor total do saldo:</span>
-                    <span className="font-extrabold text-gray-950 text-xs font-mono">{formatCurrency(saldoValue)}</span>
+                  <div className="col-span-4 border p-1 px-2 rounded bg-gray-50/50">
+                    <span className="font-bold text-[8.5px] text-gray-500 uppercase block">Valor total do saldo:</span>
+                    <span className="font-extrabold text-gray-950 font-mono">{formatCurrency(saldoValue)}</span>
                   </div>
-                  <div className="col-span-4 border p-2 rounded-md">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">Dividido em:</span>
-                    <span className="font-extrabold text-gray-950 text-xs font-mono">{saldoInstallments}x</span>
+                  <div className="col-span-4 border p-1 px-2 rounded">
+                    <span className="font-bold text-[8.5px] text-gray-500 uppercase block">Dividido em:</span>
+                    <span className="font-extrabold text-gray-950 font-mono">{saldoInstallments}x</span>
                   </div>
-                  <div className="col-span-4 border p-2 rounded-md bg-gray-55">
-                    <span className="font-bold text-[9px] text-indigo-700 uppercase block">Valor das parcelas:</span>
-                    <span className="font-black text-indigo-800 text-xs font-mono">{formatCurrency(saldoInstallments > 0 ? saldoValue / saldoInstallments : 0)}</span>
+                  <div className="col-span-4 border p-1 px-2 rounded bg-gray-50">
+                    <span className="font-bold text-[8.5px] text-indigo-700 uppercase block">Valor das parcelas:</span>
+                    <span className="font-black text-indigo-800 font-mono">{formatCurrency(saldoInstallments > 0 ? saldoValue / saldoInstallments : 0)}</span>
                   </div>
 
-                  <div className="col-span-6 border p-2 rounded-md">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">Forma de pagamento do saldo:</span>
-                    <span className="font-extrabold text-gray-950 text-xs">{getPaymentName()}</span>
+                  <div className="col-span-6 border p-1 px-2 rounded">
+                    <span className="font-bold text-[8.5px] text-gray-500 uppercase block">Forma de pagamento do saldo:</span>
+                    <span className="font-extrabold text-gray-950">{getPaymentName()}</span>
                   </div>
-                  <div className="col-span-6 border p-2 rounded-md">
-                    <span className="font-bold text-[9px] text-gray-500 uppercase block">1º Parcela do saldo para:</span>
-                    <span className="font-extrabold text-gray-900 text-xs">{primeiraSaldoData ? new Date(primeiraSaldoData).toLocaleDateString('pt-BR') : '_______________________________'}</span>
+                  <div className="col-span-6 border p-1 px-2 rounded">
+                    <span className="font-bold text-[8.5px] text-gray-500 uppercase block">1º Parcela do saldo para:</span>
+                    <span className="font-extrabold text-gray-900">{primeiraSaldoData ? new Date(primeiraSaldoData + 'T12:00:00').toLocaleDateString('pt-BR') : '_______________________________'}</span>
                   </div>
                 </div>
               </div>
 
               {/* BLOCK 4: OBSERVAÇÕES */}
-              <div className="border rounded-md p-3 min-h-[90px] border-gray-300">
-                <span className="font-bold text-[9px] text-gray-500 uppercase block mb-1">Observações:</span>
-                <p className="text-[10px] text-gray-700 whitespace-pre-wrap leading-relaxed">
+              <div className="border rounded-md p-1.5 px-2 border-gray-300">
+                <span className="font-bold text-[8.5px] text-gray-500 uppercase block mb-0.5">Observações:</span>
+                <p className="text-[10px] text-gray-700 whitespace-pre-wrap leading-tight">
                   {observacoes || 'Nenhuma observação informada.'}
                 </p>
               </div>
             </div>
 
             {/* Bottom Assinatura */}
-            <div className="pt-4 border-t border-gray-200 mt-6 flex justify-between items-end">
+            <div className="pt-2 border-t border-gray-200 mt-3 flex justify-between items-end">
               <span className="text-[9px] text-gray-400">Tabela de Preços Lagoa Lovers • Emissão Digital via Corretor {brokerName}</span>
               <div className="text-center w-80">
                 <div className="border-t border-black pt-1 text-xs font-bold text-gray-900">
@@ -1572,28 +1574,28 @@ export default function ContractSheet({
           <div className="page-break"></div>
 
           {/* PAGE 2: DEPENDENTES MATRIZ */}
-          <div className="print-page w-[210mm] min-h-[297mm] pl-[16mm] pr-[16mm] pt-[10mm] pb-[10mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
+          <div className="print-page w-[210mm] min-h-[297mm] pl-[16mm] pr-[16mm] pt-[6mm] pb-[6mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
             {/* Decorative Side Borders from Uploaded Attachments */}
             <img 
-              src="https://i.postimg.cc/sxBbXFXr/Whats-App-Image-2026-05-28-at-12-47-23.jpg" 
+              src="https://i.postimg.cc/g2vF8PKd/Whats-App-Image-2026-05-28-at-12-47-18.jpg" 
               alt="Borda Esquerda" 
-              className="absolute left-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-[8mm] h-[120mm] object-contain pointer-events-none" 
               referrerPolicy="no-referrer"
             />
             <img 
-              src="https://i.postimg.cc/g2vF8PKd/Whats-App-Image-2026-05-28-at-12-47-18.jpg" 
+              src="https://i.postimg.cc/sxBbXFXr/Whats-App-Image-2026-05-28-at-12-47-23.jpg" 
               alt="Borda Direita" 
-              className="absolute right-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-[8mm] h-[120mm] object-contain pointer-events-none" 
               referrerPolicy="no-referrer"
             />
 
             <div className="relative z-10 w-full">
               {/* Logo and Class Header */}
-              <div className="flex justify-between items-center border-b pb-4 mb-4 border-gray-300">
+              <div className="flex justify-between items-center border-b pb-3 mb-4 border-gray-300">
                 <img 
                   src="https://i.postimg.cc/2SvmGWr9/Whats-App-Image-2026-05-28-at-12-57-51.png" 
                   alt="Lagoa Lovers" 
-                  className="h-16 object-contain"
+                  className="h-12 object-contain"
                   referrerPolicy="no-referrer"
                 />
                 <div className="text-right">
@@ -1656,7 +1658,7 @@ export default function ContractSheet({
             </div>
 
             {/* Bottom Signature 2 */}
-            <div className="pt-4 border-t border-gray-200 mt-6 flex justify-between items-end">
+            <div className="pt-2 border-t border-gray-200 mt-3 flex justify-between items-end">
               <span className="text-[9px] text-gray-400">Lista Geral de Beneficiários - Lagoa Parques e Hotéis</span>
               <div className="text-center w-80">
                 <div className="border-t border-black pt-1 text-xs font-bold text-gray-900">

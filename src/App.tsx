@@ -74,7 +74,7 @@ export default function App() {
             </div>
             <div>
               <p className="text-[10px] uppercase font-bold tracking-wider text-gray-400">Total de Opções</p>
-              <h4 className="text-sm font-extrabold text-gray-900">12 Modalidades</h4>
+              <h4 className="text-sm font-extrabold text-gray-900">{PRICING_PLANS.length * 4} Modalidades</h4>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ export default function App() {
             </div>
             <div>
               <p className="text-[10px] uppercase font-bold tracking-wider text-gray-400 font-sans">Facilidade de Crédito</p>
-              <h4 className="text-sm font-extrabold text-gray-900 font-mono">Boleta / Recorrente 30x</h4>
+              <h4 className="text-sm font-extrabold text-gray-900 font-mono">Boleto / Recorrente 30x</h4>
             </div>
           </div>
 

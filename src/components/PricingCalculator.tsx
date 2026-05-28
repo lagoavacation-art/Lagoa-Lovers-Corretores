@@ -58,37 +58,84 @@ export default function PricingCalculator({
   return (
     <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-6">
       
-      {/* 1. SELETOR DE QUANTIDADE DE PESSOAS */}
-      <div className="mb-8">
-        <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-          <Users className="w-4.5 h-4.5 text-emerald-600" />
-          Selecione o Número de Pessoas do Título:
-        </label>
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
-          {PRICING_PLANS.map((plan) => {
-            const isSelected = selectedPlan.id === plan.id;
-            const singlePersonCost = plan.prices.vista / plan.peopleCount;
-            return (
-              <button
-                key={plan.id}
-                id={`btn-plan-${plan.id}`}
-                onClick={() => onSelectPlan(plan)}
-                className={`flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-200 cursor-pointer ${
-                  isSelected
-                    ? 'bg-emerald-900 text-white border-emerald-950 shadow-md transform scale-102 font-medium'
-                    : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-emerald-50 hover:border-emerald-200'
-                }`}
-              >
-                <span className="text-xl font-bold">{plan.peopleCount}</span>
-                <span className="text-[10px] tracking-wide uppercase font-semibold">
-                  {plan.peopleCount === 1 ? 'Pessoa' : 'Pessoas'}
-                </span>
-                <span className={`text-[9px] mt-1 font-mono ${isSelected ? 'text-amber-400' : 'text-gray-400'}`}>
-                  {formatCurrency(singlePersonCost)}/p.
-                </span>
-              </button>
-            );
-          })}
+      {/* 1. SELETOR DE PLANOS */}
+      <div className="mb-8 space-y-5">
+        <div>
+          <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-1.5 font-sans">
+            <Users className="w-4.5 h-4.5 text-emerald-600" />
+            Títulos Sociais Vitalícios (por quantidade de pessoas):
+          </label>
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+            {PRICING_PLANS.filter((p) => p.id <= 6).map((plan) => {
+              const isSelected = selectedPlan.id === plan.id;
+              const singlePersonCost = plan.prices.vista / plan.peopleCount;
+              return (
+                <button
+                  key={plan.id}
+                  id={`btn-plan-${plan.id}`}
+                  onClick={() => onSelectPlan(plan)}
+                  className={`flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-200 cursor-pointer ${
+                    isSelected
+                      ? 'bg-emerald-900 text-white border-emerald-950 shadow-md transform scale-102 font-medium'
+                      : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-emerald-50 hover:border-emerald-200'
+                  }`}
+                >
+                  <span className="text-xl font-bold">{plan.peopleCount}</span>
+                  <span className="text-[10px] tracking-wide uppercase font-semibold">
+                    {plan.peopleCount === 1 ? 'Pessoa' : 'Pessoas'}
+                  </span>
+                  <span className={`text-[9px] mt-1 font-mono ${isSelected ? 'text-amber-400' : 'text-gray-400'}`}>
+                    {formatCurrency(singlePersonCost)}/p.
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-1.5 font-sans">
+            <Sparkles className="w-4.5 h-4.5 text-amber-500 animate-pulse" />
+            Vendas Especiais - Títulos Familiares Vitalícios:
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {PRICING_PLANS.filter((p) => p.id >= 7).map((plan) => {
+              const isSelected = selectedPlan.id === plan.id;
+              return (
+                <button
+                  key={plan.id}
+                  id={`btn-plan-${plan.id}`}
+                  onClick={() => onSelectPlan(plan)}
+                  className={`flex items-center justify-between p-3.5 px-4 rounded-xl border transition-all duration-200 cursor-pointer text-left ${
+                    isSelected
+                      ? 'bg-emerald-950 text-white border-emerald-950 shadow-md transform scale-102'
+                      : 'bg-amber-50/20 text-gray-800 border-amber-200/40 hover:bg-amber-50 hover:border-amber-200'
+                  }`}
+                >
+                  <div className="flex flex-col pr-1">
+                    <span className="text-xs font-black uppercase tracking-wide flex items-center gap-1 flex-wrap">
+                      {plan.title.replace('Título ', '')}
+                      {plan.id === 8 && (
+                        <span className="text-[8px] bg-amber-400 text-emerald-950 font-black px-1.5 py-0.5 rounded tracking-wider">ISENTO</span>
+                      )}
+                    </span>
+                    <span className={`text-[9px] mt-0.5 leading-tight ${isSelected ? 'text-amber-200/90' : 'text-gray-500'}`}>
+                      {plan.id === 7 
+                        ? 'Familiar Vitalício Completo + 8 diárias' 
+                        : 'Sem taxa de manutenção mensal para sempre + 12 diárias!'
+                      }
+                    </span>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <span className={`text-xs font-mono font-bold block ${isSelected ? 'text-white' : 'text-emerald-900'}`}>
+                      {formatCurrency(plan.id === 7 ? 9600 : 18000)}
+                    </span>
+                    <span className="text-[8px] uppercase tracking-wider font-extrabold text-gray-400">Tabela</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -317,7 +364,7 @@ export default function PricingCalculator({
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
             <Sparkles className="w-4.5 h-4.5 text-amber-500" />
-            Vantagens Ativas do Plano ({selectedPlan.peopleCount} {selectedPlan.peopleCount === 1 ? 'Pessoa' : 'Pessoas'}):
+            Vantagens Ativas do Plano ({selectedPlan.id >= 7 ? 'Plano Familiar Completo' : `${selectedPlan.peopleCount} ${selectedPlan.peopleCount === 1 ? 'Pessoa' : 'Pessoas'}`}):
           </h3>
           
           <span className="text-xs font-bold text-amber-600 bg-amber-50 border border-amber-200/50 px-3 py-1 rounded-lg flex items-center gap-1 shadow-xs">

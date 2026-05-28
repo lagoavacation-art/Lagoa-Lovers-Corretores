@@ -73,20 +73,20 @@ export default function FullComparisonTable({
                   {/* Title & Badge */}
                   <td className="py-4 px-5">
                     <div className="flex items-center gap-2">
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs ${
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${
                         isActive ? 'bg-emerald-900 text-white' : 'bg-gray-100 text-gray-700'
                       }`}>
-                        {plan.peopleCount}
+                        {plan.id === 7 ? 'F' : plan.id === 8 ? 'R' : plan.peopleCount}
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-gray-900 flex items-center gap-1.5">
-                          {plan.peopleCount === 1 ? '1 Pessoa' : `${plan.peopleCount} Pessoas`}
+                        <div className="text-xs font-bold text-gray-900 flex flex-wrap items-center gap-1.5">
+                          <span>{plan.title}</span>
                           {isActive && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0"></span>
                           )}
                         </div>
                         <div className="text-[10px] text-gray-400 font-mono mt-0.5">
-                          {formatCurrency(ppVista)} por pessoa
+                          {plan.id >= 7 ? 'Familiar Completo' : `${formatCurrency(ppVista)} por pessoa`}
                         </div>
                       </div>
                     </div>

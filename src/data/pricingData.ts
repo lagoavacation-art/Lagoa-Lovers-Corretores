@@ -173,6 +173,66 @@ export const PRICING_PLANS: PricingPlan[] = [
       "50% de desconto no estacionamento",
       "6 diárias de hospedagem de domingo a quinta exceto em férias e feriados (boas vindas utilização apenas uma vez)"
     ]
+  },
+  {
+    id: 7,
+    peopleCount: 8,
+    title: "Título Vitalício Familiar",
+    prices: {
+      vista: 8640.00,
+      cartao_12x: 9120.00,
+      recorrente: {
+        total: 9600.00,
+        entrance: 1371.84,
+        installments: 30,
+        installmentValue: 274.27
+      },
+      boleto: {
+        total: 9600.00,
+        entrance: 1371.84,
+        installments: 30,
+        installmentValue: 274.27
+      }
+    },
+    lodgingNights: 8,
+    benefits: [
+      "Título Familiar vitalício (Titular + cônjuge + Pai, Mãe, Sogro, Sogra e filhos até 24 anos)",
+      "02 convites mensais após quitação do título / não cumulativos",
+      "8 diárias de hospedagem para utilizar com sua família ou convidados (conforme regulamento)",
+      "1ª anuidade de carteirinhas grátis para titular e agregados",
+      "50% de desconto no estacionamento",
+      "10% de desconto no Réveillon"
+    ]
+  },
+  {
+    id: 8,
+    peopleCount: 8,
+    title: "Título Familiar Vitalício Remido",
+    prices: {
+      vista: 18000.00,
+      cartao_12x: 18000.00,
+      recorrente: {
+        total: 18900.00,
+        entrance: 2835.00,
+        installments: 30,
+        installmentValue: 535.50
+      },
+      boleto: {
+        total: 20700.00,
+        entrance: 3105.00,
+        installments: 30,
+        installmentValue: 586.50
+      }
+    },
+    lodgingNights: 12,
+    benefits: [
+      "Isento permanentemente de taxa de manutenção mensal",
+      "Familiar completo (Titular + Cônjuge + Filhos até 21 anos, ou até 24 cursando faculdade + Pai, Mãe, Sogro, Sogra)",
+      "02 convites mensais após quitação do título / não cumulativos",
+      "50% de desconto no estacionamento",
+      "10% de desconto no Réveillon",
+      "12 diárias de hospedagem fracionadas em 3x, de domingo a quinta, exceto férias/feriados (boas-vindas, utilização única conforme regulamento)"
+    ]
   }
 ];
 
