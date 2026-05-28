@@ -439,6 +439,13 @@ export default function WhatsappProposal({
 ✅ ${lodgingNights} diárias de hospedagem de domingo a quinta-feira (boas-vindas para utilização única, exceto em férias e feriados).`;
     }
 
+    let planTypeLabel = 'TÍTULO VITALÍCIO SOCIAL';
+    if (selectedPlan.id === 7) {
+      planTypeLabel = 'TÍTULO VITALÍCIO FAMILIAR';
+    } else if (selectedPlan.id === 8) {
+      planTypeLabel = 'TÍTULO FAMILIAR VITALÍCIO REMIDO';
+    }
+
     const brokerSignature = brokerName 
       ? `\nQualquer dúvida estou à disposição para ajudar no seu processo de associação!\nAtenciosamente,\n*${brokerName}*${brokerPhone ? `\n📞 Contato: ${brokerPhone}` : ''}`
       : '\nQualquer dúvida estou à inteira disposição para te atender e formalizar o título!';
@@ -449,7 +456,7 @@ export default function WhatsappProposal({
 
 📅 *Data de Envio:* ${todayStr}
 
-Preparei aqui os detalhes do seu orçamento exclusivo para as condições do *TITULO VITALÍCIO SOCIAL* do clube. Veja como ficou fácil se associar:
+Preparei aqui os detalhes do seu orçamento exclusivo para as condições do *${planTypeLabel}* do clube. Veja como ficou fácil se associar:
 
 🏆 *${pTitle.toUpperCase()}*
 ${targetDesc}
