@@ -1278,13 +1278,26 @@ export default function ContractSheet({
           )}
           
           {/* PAGE 1: CONTRATO AUTORIZAÇÃO */}
-          <div className="print-page w-[210mm] min-h-[297mm] p-[10mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
-            
-            <div>
+          <div className="print-page w-[210mm] min-h-[297mm] pl-[16mm] pr-[16mm] pt-[10mm] pb-[10mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
+            {/* Decorative Side Borders from Uploaded Attachments */}
+            <img 
+              src="input_file_0.png" 
+              alt="Borda Esquerda" 
+              className="absolute left-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
+              referrerPolicy="no-referrer"
+            />
+            <img 
+              src="input_file_1.png" 
+              alt="Borda Direita" 
+              className="absolute right-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
+              referrerPolicy="no-referrer"
+            />
+
+            <div className="relative z-10 w-full">
               {/* Logo and Class Header */}
               <div className="flex justify-between items-center border-b pb-4 mb-5 border-gray-300">
                 <img 
-                  src="https://i.postimg.cc/1RjH4j0M/logo-lagoa.png" 
+                  src="input_file_2.png" 
                   alt="Lagoa Lovers" 
                   className="h-16 object-contain"
                   referrerPolicy="no-referrer"
@@ -1522,13 +1535,26 @@ export default function ContractSheet({
           <div className="page-break"></div>
 
           {/* PAGE 2: DEPENDENTES MATRIZ */}
-          <div className="print-page w-[210mm] min-h-[297mm] p-[10mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
-            
-            <div>
+          <div className="print-page w-[210mm] min-h-[297mm] pl-[16mm] pr-[16mm] pt-[10mm] pb-[10mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
+            {/* Decorative Side Borders from Uploaded Attachments */}
+            <img 
+              src="input_file_0.png" 
+              alt="Borda Esquerda" 
+              className="absolute left-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
+              referrerPolicy="no-referrer"
+            />
+            <img 
+              src="input_file_1.png" 
+              alt="Borda Direita" 
+              className="absolute right-0 top-0 bottom-0 w-[8mm] h-full object-fill pointer-events-none" 
+              referrerPolicy="no-referrer"
+            />
+
+            <div className="relative z-10 w-full">
               {/* Logo and Class Header */}
               <div className="flex justify-between items-center border-b pb-4 mb-4 border-gray-300">
                 <img 
-                  src="https://i.postimg.cc/1RjH4j0M/logo-lagoa.png" 
+                  src="input_file_2.png" 
                   alt="Lagoa Lovers" 
                   className="h-16 object-contain"
                   referrerPolicy="no-referrer"

@@ -25,7 +25,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <div className="p-1 px-3 bg-white rounded-xl flex items-center justify-center shadow-lg">
               <img 
-                src="https://i.postimg.cc/1RjH4j0M/logo-lagoa.png" 
+                src="input_file_2.png" 
                 alt="Lagoa Lovers" 
                 className="h-14 object-contain"
                 referrerPolicy="no-referrer"
