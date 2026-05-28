@@ -169,7 +169,6 @@ export default function App() {
         {/* Global Overview Section: Pricing Table Matrix */}
         <div id="section-comparison-matrix">
           <FullComparisonTable 
-            onSelectPlan={handleSelectPlan}
             activePlanId={selectedPlan.id}
           />
         </div>

@@ -5,15 +5,13 @@
 
 import { PRICING_PLANS } from '../data/pricingData';
 import { PricingPlan } from '../types';
-import { Eye, Calendar, Sparkles, AlertCircle } from 'lucide-react';
+import { Calendar, Sparkles, AlertCircle } from 'lucide-react';
 
 interface FullComparisonTableProps {
-  onSelectPlan: (plan: PricingPlan) => void;
   activePlanId: number;
 }
 
 export default function FullComparisonTable({
-  onSelectPlan,
   activePlanId
 }: FullComparisonTableProps) {
 
@@ -54,8 +52,7 @@ export default function FullComparisonTable({
               <th className="py-4 px-4">Cartão 12x (S/ Juros)</th>
               <th className="py-4 px-4 text-teal-900 bg-teal-50/20">Recorrente (30x)</th>
               <th className="py-4 px-4 text-indigo-900 bg-indigo-50/20">Boleto (30x)</th>
-              <th className="py-4 px-4 text-center">Hospedagem</th>
-              <th className="py-4 px-5 text-right">Ação</th>
+              <th className="py-4 px-5 text-center">Hospedagem</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-150">
@@ -132,28 +129,11 @@ export default function FullComparisonTable({
                   </td>
 
                   {/* Lodging Nights */}
-                  <td className="py-4 px-4 text-center">
+                  <td className="py-4 px-5 text-center">
                     <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">
                       <Calendar className="w-3.5 h-3.5 text-amber-500" />
                       <span>{plan.lodgingNights} diárias</span>
                     </span>
-                  </td>
-
-                  {/* Quick Select Button */}
-                  <td className="py-4 px-5 text-right">
-                    <button
-                      type="button"
-                      id={`table-select-${plan.id}`}
-                      onClick={() => onSelectPlan(plan)}
-                      className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg border transition-all cursor-pointer ${
-                        isActive
-                          ? 'bg-emerald-950 text-white border-emerald-950'
-                          : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:text-emerald-700'
-                      }`}
-                    >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>{isActive ? 'Ativo' : 'Visualizar'}</span>
-                    </button>
                   </td>
 
                 </tr>
@@ -166,8 +146,8 @@ export default function FullComparisonTable({
       {/* Info panel footer */}
       <div className="px-6 py-4 bg-gray-50 border-t border-gray-150 flex flex-col md:flex-row items-center justify-between text-[11px] text-gray-500 gap-3">
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 inline-block"></span>
-          <span><strong>Dica do Corretor:</strong> Clique em &quot;Visualizar&quot; para carregar os dados detalhados no simulador e configurar propostas para os clientes.</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 inline-block animate-pulse"></span>
+          <span><strong>Dica do Corretor:</strong> Use a tabela acima como referência rápida de valores consolidados e parcelamentos de todos os planos.</span>
         </div>
         <div className="text-gray-400 font-mono">
           Nº de títulos disponíveis para venda imediata: Limitados

@@ -21,7 +21,10 @@ import {
   Database,
   Cloud,
   CheckCircle,
-  Clock
+  Clock,
+  Eye,
+  X,
+  Download
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -154,6 +157,10 @@ export default function ContractSheet({
   // Auto-save tracking states to prevent duplicates
   const [currentContractId, setCurrentContractId] = useState<number | null>(null);
   const [lastSavedContractData, setLastSavedContractData] = useState<any>(null);
+
+  // States to facilitate PDF print and preview
+  const [isManualPreviewActive, setIsManualPreviewActive] = useState(false);
+  const [showPrintInstructionsModal, setShowPrintInstructionsModal] = useState(false);
 
   // Load saved contracts history
   const loadContractsHistory = async () => {
@@ -422,7 +429,17 @@ export default function ContractSheet({
   };
 
   const handlePrint = () => {
-    window.print();
+    const isIframe = window.self !== window.top;
+    if (isIframe) {
+      setShowPrintInstructionsModal(true);
+    } else {
+      try {
+        window.print();
+      } catch (err) {
+        console.error("Print blocked or failed:", err);
+        setShowPrintInstructionsModal(true);
+      }
+    }
   };
 
   return (
@@ -470,8 +487,18 @@ export default function ContractSheet({
             id="btn-print-contract-pdf"
             className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs tracking-wide uppercase px-5 py-3 rounded-xl border border-emerald-600 flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow cursor-pointer"
           >
-            <Printer className="w-4 h-4 animate-bounce" />
+            <Printer className="w-4 h-4" />
             <span>Exportar para PDF / Imprimir</span>
+          </button>
+
+          {/* On-screen Print Preview Button */}
+          <button
+            onClick={() => setIsManualPreviewActive(true)}
+            id="btn-preview-contract"
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-gray-900 font-bold text-xs tracking-wide uppercase px-5 py-3 rounded-xl border border-gray-200 flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
+          >
+            <Eye className="w-4 h-4 text-gray-500" />
+            <span>Visualizar Folha Cheia</span>
           </button>
         </div>
       </div>
@@ -1194,7 +1221,61 @@ export default function ContractSheet({
         </div>
       )}
       {createPortal(
-        <div id="printable-contract-blueprint" className="hidden-in-browser">
+        <div 
+          id="printable-contract-blueprint" 
+          className={isManualPreviewActive ? "fixed inset-0 z-50 bg-gray-950 overflow-y-auto p-4 md:p-8 flex flex-col items-center gap-6" : "hidden-in-browser"}
+        >
+          {isManualPreviewActive && (
+            <div className="print:hidden w-full max-w-[210mm] bg-gray-905 border border-gray-800 rounded-2xl p-5 flex flex-col md:flex-row items-center justify-between gap-5 shadow-2xl mb-3 font-sans">
+              <div className="text-left w-full md:max-w-[50%]">
+                <h4 className="font-black text-sm uppercase text-[#00aaff] flex items-center gap-2">
+                  <Download className="w-4 h-4 animate-pulse text-[#00aaff]" />
+                  <span>Modo União de Impressão &amp; PDF</span>
+                </h4>
+                <p className="text-gray-450 text-xs mt-1 leading-relaxed">
+                  Para fazer o download, clique em <strong className="text-emerald-400">Baixar PDF</strong> e escolha a opção <strong>&quot;Salvar como PDF&quot;</strong> no campo Destino do seu navegador.
+                </p>
+              </div>
+              <div className="flex flex-wrap sm:flex-nowrap gap-2.5 shrink-0 w-full md:w-auto justify-end">
+                <button
+                  type="button"
+                  onClick={() => {
+                    try {
+                      window.print();
+                    } catch (e) {
+                      console.error(e);
+                    }
+                  }}
+                  className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider px-5 py-3 rounded-xl cursor-pointer flex items-center justify-center gap-2 transition-all shadow-sm shadow-emerald-950/20"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Baixar PDF</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    try {
+                      window.print();
+                    } catch (e) {
+                      console.error(e);
+                    }
+                  }}
+                  className="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 text-gray-200 hover:text-white text-xs font-bold uppercase tracking-wider px-4 py-3 rounded-xl cursor-pointer flex items-center justify-center gap-2 transition-all border border-gray-750"
+                >
+                  <Printer className="w-4 h-4 text-gray-400" />
+                  <span>Imprimir</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsManualPreviewActive(false)}
+                  className="w-full sm:w-auto bg-gray-900 hover:bg-gray-850 text-gray-450 hover:text-gray-200 text-xs font-bold uppercase tracking-wider px-4 py-3 rounded-xl cursor-pointer flex items-center justify-center gap-2 transition-all border border-gray-800"
+                >
+                  <X className="w-4 h-4" />
+                  <span>Fechar</span>
+                </button>
+              </div>
+            </div>
+          )}
           
           {/* PAGE 1: CONTRATO AUTORIZAÇÃO */}
           <div className="print-page w-[210mm] min-h-[297mm] p-[10mm] bg-white text-black relative flex flex-col justify-between" style={{ contentVisibility: 'auto' }}>
@@ -1525,6 +1606,105 @@ export default function ContractSheet({
 
         </div>,
         document.body
+      )}
+
+      {/* 5. IFRAME PRINT INSTRUCTIONS MODAL */}
+      {showPrintInstructionsModal && (
+        <div className="fixed inset-0 z-55 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs font-sans">
+          <div className="bg-white rounded-2xl shadow-2xl border border-gray-150 max-w-lg w-full overflow-hidden">
+            <div className="p-5 border-b border-gray-150 flex justify-between items-center bg-gray-50">
+              <h3 className="font-black text-xs uppercase text-gray-900 tracking-wide flex items-center gap-2">
+                <Printer className="text-emerald-600 w-5 h-5 animate-pulse" />
+                <span>Instruções para Exportar PDF</span>
+              </h3>
+              <button 
+                type="button"
+                onClick={() => setShowPrintInstructionsModal(false)}
+                className="text-gray-400 hover:text-gray-650 transition-colors p-1.5 hover:bg-gray-100 rounded-lg cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div className="p-3 bg-amber-50 text-amber-900 rounded-xl border border-amber-100 text-xs flex gap-2.5 leading-relaxed">
+                <AlertCircle className="w-5 h-5 text-amber-600 shrink-0" />
+                <div>
+                  <strong>Atenção:</strong> Como você está visualizando o aplicativo dentro do painel integrado do AI Studio, o navegador restringe a abertura direta da janela de impressão por segurança.
+                </div>
+              </div>
+
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Não se preocupe! Desenvolvemos duas formas alternativas perfeitas para você salvar e imprimir seu PDF sem limitações:
+              </p>
+
+              <div className="space-y-3">
+                {/* Option 1 */}
+                <div className="p-4 border border-gray-100 rounded-xl bg-gray-50/55 hover:bg-gray-50 transition-all text-left">
+                  <span className="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase mb-2">
+                    Opção 1 (Recomendada)
+                  </span>
+                  <h5 className="font-bold text-xs text-gray-900">Como abrir em Tela Cheia no Navegador</h5>
+                  <p className="text-[11px] text-gray-550 mt-1 leading-relaxed">
+                    Clique abaixo para abrir o sistema em uma aba normal do seu navegador. Lá, o botão de exportar funcionará com apenas 1 clique de forma nativa e sem bloqueios!
+                  </p>
+                  <a
+                    href={window.location.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-emerald-650 font-bold hover:text-emerald-700 mt-2.5 underline"
+                  >
+                    <span>Abrir em Nova Guia do Navegador ↗️</span>
+                  </a>
+                </div>
+
+                {/* Option 2 */}
+                <div className="p-4 border border-gray-100 rounded-xl bg-gray-50/55 hover:bg-gray-50 transition-all text-left">
+                  <span className="inline-block bg-sky-100 text-sky-850 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase mb-2">
+                    Opção 2
+                  </span>
+                  <h5 className="font-bold text-xs text-gray-900">Ativar Visualização Dedicada</h5>
+                  <p className="text-[11px] text-gray-550 mt-1 leading-relaxed">
+                    Ative a visualização na tela e aperte as teclas do seu teclado <strong>Ctrl + P</strong> (ou <strong>Cmd + P</strong> no Mac) para acionar a gravação do seu PDF!
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowPrintInstructionsModal(false);
+                      setIsManualPreviewActive(true);
+                    }}
+                    className="inline-flex items-center gap-1 text-xs text-sky-650 font-bold hover:text-sky-750 mt-2.5 underline cursor-pointer"
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>Ativar Visualização de Folha na Tela</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 bg-gray-50 border-t border-gray-150 flex justify-end gap-2.5">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowPrintInstructionsModal(false);
+                  try {
+                    window.print();
+                  } catch (e) {}
+                }}
+                className="bg-gray-200 hover:bg-gray-250 text-gray-750 font-bold text-xs uppercase px-4 py-2.5 rounded-xl cursor-pointer"
+              >
+                Tentar Mesmo Assim
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowPrintInstructionsModal(false)}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase px-5 py-2.5 rounded-xl cursor-pointer"
+              >
+                Entendido
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
     </div>
