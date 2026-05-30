@@ -129,7 +129,7 @@ export default function FullComparisonTable({
                   >
                     <div className="text-xs font-bold">{formatCurrency(plan.prices.cartao_12x)}</div>
                     <div className="text-[9px] text-gray-500 font-mono">
-                      12x de {formatCurrency(plan.prices.cartao_12x / 12)}
+                      12x de {formatCurrency(plan.id === 7 ? 659.39 : (plan.prices.cartao_12x / 12))}
                     </div>
                   </td>
 

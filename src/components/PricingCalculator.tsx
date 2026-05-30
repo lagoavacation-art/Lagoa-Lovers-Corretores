@@ -228,7 +228,7 @@ export default function PricingCalculator({
                   {formatCurrency(selectedPlan.prices.cartao_12x)}
                 </h4>
                 <div className="text-sm font-semibold text-emerald-950 mt-1.5">
-                  Até 12x de <strong className="text-base text-emerald-800 font-extrabold">{formatCurrency(selectedPlan.prices.cartao_12x / 12)}</strong> sem juros
+                  Até 12x de <strong className="text-base text-emerald-800 font-extrabold">{formatCurrency(selectedPlan.id === 7 ? 659.39 : (selectedPlan.prices.cartao_12x / 12))}</strong> sem juros
                 </div>
                 <p className="text-xs text-gray-500 mt-1 leading-relaxed">
                   Parcelamento tradicional no cartão de crédito do cliente, quitado direto pela operadora em até 1 ano.
@@ -253,7 +253,7 @@ export default function PricingCalculator({
                       <div key={m} className="flex justify-between border-b border-gray-200/60 pb-1 font-mono text-gray-600">
                         <span>{m}x:</span>
                         <span className="font-bold text-gray-900">
-                          {formatCurrency(selectedPlan.prices.cartao_12x / m)}
+                          {formatCurrency(selectedPlan.id === 7 && m === 12 ? 659.39 : (selectedPlan.prices.cartao_12x / m))}
                         </span>
                       </div>
                     ))}

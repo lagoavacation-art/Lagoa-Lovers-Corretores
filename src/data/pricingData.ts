@@ -179,8 +179,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     peopleCount: 8,
     title: "Título Vitalício Familiar",
     prices: {
-      vista: 8640.00,
-      cartao_12x: 9120.00,
+      vista: 7520.58,
+      cartao_12x: 7938.00,
       recorrente: {
         total: 9600.00,
         entrance: 1371.84,
@@ -196,12 +196,12 @@ export const PRICING_PLANS: PricingPlan[] = [
     },
     lodgingNights: 8,
     benefits: [
-      "Título Familiar vitalício (Titular + cônjuge + Pai, Mãe, Sogro, Sogra e filhos até 24 anos)",
-      "02 convites mensais após quitação do título / não cumulativos",
-      "8 diárias de hospedagem para utilizar com sua família ou convidados (conforme regulamento)",
-      "1ª anuidade de carteirinhas grátis para titular e agregados",
-      "50% de desconto no estacionamento",
-      "10% de desconto no Réveillon"
+      "1° Ano de carteirinha grátis",
+      "Titular, Cônjuge, Filhos até 24 anos, Pai, Mãe, Sogro, Sogra",
+      "02 agregados com desconto de 50% de adesão (qualquer parentesco)",
+      "02 convites mensais após quitação do título (não cumulativos)",
+      "50% de desconto no estacionamento e 10% de desconto no Réveillon",
+      "8 diárias de hospedagem fracionadas em 2x de domingo a quinta, exceto férias/feriados"
     ]
   },
   {

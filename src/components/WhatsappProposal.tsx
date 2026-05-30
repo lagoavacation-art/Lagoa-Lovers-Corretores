@@ -402,11 +402,15 @@ export default function WhatsappProposal({
       savingsSection = `\n💡 Você economiza *${fmt(savings)}* em comparação com a tabela em boleto!`;
     } else if (selectedPaymentType === 'cartao_12x') {
       const finalPrice = selectedPlan.prices.cartao_12x - customDiscount;
-      const installmentValue = finalPrice / 12;
+      const installmentValue = selectedPlan.id === 7 && customDiscount === 0 ? 659.39 : (finalPrice / 12);
       paymentDetail = `*R$ ${finalPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} no Cartão de Crédito*\n💳 Parcelado em até *12x de ${fmt(installmentValue)} sem juros*`;
     } else if (selectedPaymentType === 'recorrente') {
       const rec = selectedPlan.prices.recorrente;
-      paymentDetail = `*R$ ${rec.total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} CRÉDITO RECORRENTE*\n➡️ *Entrada de ${fmt(rec.entrance)}*\n➡️ *Saldo de 30x de ${fmt(rec.installmentValue)}* no Cartão Recorrente\n_(🚨 Não bloqueia o limite total do seu cartão! Apenas o valor da parcela mensal é consumido)_`;
+      if (selectedPlan.id === 7) {
+        paymentDetail = `*De: R$ 11.520,00 por R$ 9.600,00 CRÉDITO RECORRENTE*\n➡️ *Entrada de R$ 1.371,84* (parcelada em até *5x de R$ 274,36 sem juros* no cartão de crédito)\n➡️ *Saldo restante de 30x de R$ 274,27* no Cartão Recorrente\n_(🚨 Não compromete seu limite! Apenas o valor da parcela mensal é aprovado mês a mês)_`;
+      } else {
+        paymentDetail = `*R$ ${rec.total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} CRÉDITO RECORRENTE*\n➡️ *Entrada de ${fmt(rec.entrance)}*\n➡️ *Saldo de 30x de ${fmt(rec.installmentValue)}* no Cartão Recorrente\n_(🚨 Não bloqueia o limite total do seu cartão! Apenas o valor da parcela mensal é consumido)_`;
+      }
     } else {
       const bol = selectedPlan.prices.boleto;
       paymentDetail = `*R$ ${bol.total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} BOLETO*\n➡️ *Entrada de ${fmt(bol.entrance)}*\n➡️ *Saldo de 30x de ${fmt(bol.installmentValue)}* no Boleto Bancário`;
@@ -416,13 +420,14 @@ export default function WhatsappProposal({
     let benefitsList = '';
 
     if (selectedPlan.id === 7) {
-      targetDesc = `Para Titular, Cônjuge, Pai, Mãe, Sogro, Sogra e filhos de até 24 anos usufruírem de forma vitalícia e definitiva.`;
-      benefitsList = `✅ Título Familiar vitalício completo (Titular + cônjuge + agregado).
-✅ 1ª anuidade de carteirinhas grátis para titular e agregados!
-✅ 02 convites mensais após quitação do título (não cumulativos).
+      targetDesc = `Para Titular, Cônjuge, Filhos de até 24 anos, Pai, Mãe, Sogro e Sogra usufruírem de forma vitalícia e definitiva.`;
+      benefitsList = `✅ 1° Ano de carteirinha totalmente grátis!
+✅ Titular, Cônjuge, Filhos até 24 anos, Pai, Mãe, Sogro e Sogra.
+✅ 02 agregados inclusos com desconto de 50% no valor da adesão, independente do grau de parentesco!
+✅ 02 convites mensais após quisição/quitação do título (não cumulativos).
 ✅ 50% de desconto definitivo no estacionamento do clube.
 ✅ 10% de desconto definitivo no Réveillon do clube.
-✅ 8 diárias de hospedagem inclusas para utilizar com sua família ou convidados.`;
+✅ 8 diárias de hospedagem inclusas fracionadas em 2x (domingo a quinta, exceto férias/feriados, utilização de boas-vindas única).`;
     } else if (selectedPlan.id === 8) {
       targetDesc = `Isento de taxa de manutenção mensal permanente para Titular, Cônjuge, Pai, Mãe, Sogro, Sogra e filhos.`;
       benefitsList = `✅ ISENTO permanentemente de taxa de manutenção mensal para sempre!
